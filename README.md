@@ -57,6 +57,9 @@ The tracking comprises of four steps:
 
 The Web SDK checks if the visitor is a new or returning anonymous visitor or a known person whose identity was established on a previous page. For a new anonymous user, the visitor is assigned a tracking ID (visitor ID). In case the user is a returning anonymous or known visitor, the Web SDK uses their existing tracking ID (visitor ID or person ID) and resets the tracking expiration timer. Take a look at the Visitor Personalization section below to learn more about setting the user context in the Web SDK.
 
+**NOTE**
+A 45 day idle period for anonymous visitors is applied to the Web SDK by default. This means that the system will remove all visitor data (session activity and visitorID) after 45 days of inactivity.  If the user returns to the site after 45 days then they will be treated as a new anonymous visitor in the system and assigned a new visitorID. If the visitor returns to the website within 45 days then they will be treated as a known visitor and their page view and session activity will be tracked under the same visitorID.
+
 2. Track user session
 
 When the visitor enters the website through the page, the Web SDK creates a new user session to keep all site events the user triggers during his visit. The SDK sends the standard Session Started event when a session is created. If the page is not the first one that the visitor visits on the website, the SDK keeps the existing user session running. The session expires after 30 minutes of inactivity (no events registered) or the website explicitly closes the session by calling `pe.forgetPerson()`. Once the session is closed, the SDK sends the standard Session Ended event. For more information about Session Started/Ended events see [People Events](https://www.infobip.com/docs/people/events#people-events-standard-events).
@@ -119,7 +122,7 @@ You may also choose to reset the user context when the user logs off from his ac
 pe.forgetPerson();
 ```
 
-**NOTE** 
+**NOTE**
 Calling `pe.forgetPerson()` on an anonymous visitor will simply end the current user session. The first event the visitor triggers will start a new session.  
 
 ## Update Profile Information
