@@ -78,10 +78,10 @@ You will need to enable tracking of the Page View event in the People Events con
 
 You can use the `pe.track()` SDK method to track your custom events based on the visitor's activity on the page.
 
-You must pass the event Event ID (which can be found on the event definitions page of the portal) and event properties to the track method. See [Track Custom Events](https://www.infobip.com/docs/people/events#track-custom-events) to learn more.
+You must pass the event Definition ID (which can be found on the event definitions page of the portal) and event properties to the track method. See [Track Custom Events](https://www.infobip.com/docs/people/events#track-custom-events) to learn more.
 
 ```javascript
-pe.track("DEFINITION_ID", { propertyKey: "PROPERTY_VALUE" });
+pe.track('definitionId', { propertyName: 'propertyValue' });
 ```
 Always check to make sure that your properties match your definition. The properties may contain either all fields from the definition or some of them, but they can't contain anything that wasn't defined as a property. 
 
@@ -116,7 +116,7 @@ For Lead profiles, all recorded user sessions are appended to the profile to pro
 For Customer profiles only the current session events are appended to the profile.
 Once the `setPerson` call established the connection to a known People profile and the browsing and event history is merged from the anonymous visitor, the anonymous tracking data is deleted and the visitor tracking continues using the profile ID (person ID) .
 
-You may also choose to reset the user context when the user logs off from his account. To do that invoke `pe.forgetPerson()` to clear the personalization information, end the user sesion and continue tracking the user as a new anonymous visitor.   
+You may also choose to reset the user context when the user logs off from his account. To do that invoke `pe.forgetPerson()` to clear the personalization information, end the user session and continue tracking the user as a new anonymous visitor.   
 ```javascript
 // forget person
 pe.forgetPerson();
