@@ -20,6 +20,21 @@ To get started with the Web SDK take a look at the methods and descriptions belo
 |appendToList|Adds a new item to a List profile attribute|
 |forgetPerson|Reverts setPerson by resetting  the user context and closing the current session. Typically used when a user logs off|
 
+## Google Tag Manager
+If you have Google Tag Manager integrated in your website, you can easily add the People Web SDK without modifying the website code. You can manage the SDK along with your other tracking tags through a single interface.
+
+In the Google Tag Manager configuration, use custom HTML tags to place calls to the People Web SDK. Configure your triggers (predefined or custom) to fire your tags according to your website logic. Use a Google Tag Manager data layer to trigger events and pass data that the user enters on the web page as data layer variables to your People Web SDK calls.
+
+For more information about how to use Google Tag Manager and its components, refer to the [Google documentation](https://support.google.com/tagmanager).
+
+To add the People Web SDK JavaScript tag through Google Tag Manager, go to the [Deploy Using Google Tag Manager](https://github.com/infobip/people-web-sdk#deploy-using-google-tag-manager) section.
+
+## Integrate the People Web SDK
+You can integrate the People Web SDK into your website through one of the following options:
+
+-   Add the People Web SDK JavaScript tag directly to your website. Go to the  [Deploy the Library](https://github.com/infobip/people-web-sdk#deploy-the-library)  section.
+-   Add the People Web SDK JavaScript tag through Google Tag Manager. Go to the  [Deploy Using Google Tag Manager](https://github.com/infobip/people-web-sdk#deploy-using-google-tag-manager)  section.
+
 ## Browser Compatibility
 
 We support up to 2 most recent versions of these browsers (unless otherwise indicated):
@@ -47,6 +62,17 @@ var s=t.getElementsByTagName("script")[0];r.async=1;r.src=n;s.parentNode.insertB
 pe.init('Your API Key');
 </script>
 ```
+
+## Deploy Using Google Tag Manager
+1.  Log on to  [Google Tag Manager](https://tagmanager.google.com/).
+2. In the  **Tags**  section, click  **New**.
+3. Choose  **Custom HTML**  as the tag type.
+4. Add the custom code. Refer to the [Deploy the Library](https://github.com/infobip/people-web-sdk#deploy-the-library) section for the code snippet.
+5. Add  **Initialization - All Pages**  as the trigger.
+6.  Enter a name for the tag.
+7.  Click  **Save**.
+8.  Depending on your website logic and architecture, you can add other tags.
+9.  Click **Submit**.
 
 ## Track Visitor Behavior
 Whenever a site visitor opens a web page, the Web SDK is loaded and starts tracking the visitor's activity on the page.
