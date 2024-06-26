@@ -221,7 +221,7 @@ const onRegistrationFormSubmit = async (evt) => {
     /* ... */
     await pe.setPerson({ email: 'someone@email.com' }); // profile identifier from the registration form
     await pe.track('registration'); // your custom event
-    await pe.updatePerson({ firstName: 'First name', lastName: 'Last name' }); // person attributes from the form
+    await pe.updatePerson({ firstName: 'First name', lastName: 'Last name', contactInformation: { phone: [{ number: "+385991234567" }] }, customAttributes: { industry: "some industry" } }); // person attributes from the form
 };
  
 const registrationForm = document.querySelector('form');
@@ -237,10 +237,12 @@ const onRegistrationFormSubmit = (evt) => {
   const formEmail = formData.get('email');
   const formFirstName = formData.get('first-name');
   const formLastName = formData.get('last-name');
+  const formPhone = formData.get('phone');
+  const formIndustry = formData.get('industry');
 
   pe.setPerson({ email: formEmail })
     .then(() => pe.track('registration')) // your custom event
-    .then(() => pe.updatePerson({ firstName: formFirstName, lastName: formLastName }));
+    .then(() => pe.updatePerson({ firstName: formFirstName, lastName: formLastName, contactInformation: { phone: [{ number: formPhone }] }, customAttributes: { industry: formIndustry } }));
 };
 
 const registrationForm = document.querySelector('form');
@@ -257,6 +259,46 @@ const onLogoutButtonClick = async () => {
  
 const logoutButton = document.querySelector('.logout-button');
 logoutButton.addEventListener('click', onLogoutButtonClick);
+```
+
+### Event List Property
+
+```javascript
+const itemsInCart = [];
+
+// adds items to the cart on button click
+const clothesButton = document.querySelector('.button-clothes');
+clothesButton.addEventListener('click', () => {
+  itemsInCart.push({
+      itemId: 1,
+      price: 25,
+      quantity: 3,
+      inStockSince: "2023-11-17T15:47:50.4136517Z",
+      category: "clothes"
+    });
+});
+
+const shoesButton = document.querySelector('.button-shoes');
+shoesButton.addEventListener('click', () => {
+  itemsInCart.push({
+      itemId: 2,
+      price: 25,
+      quantity: 1,
+      inStockSince: "2023-12-17T15:47:50.4138054Z",
+      category: "shoes"
+    });
+});
+
+// sends an event with list property on checkout
+const paymentButton = document.querySelector('.button-payment');
+paymentButton.addEventListener('click', async () => {
+  await pe.track("checkoutCompleted", {
+    transactionId: "transaction-1",
+    fromPromoCampaign: true,
+    totalCost: 100,
+    itemsInCart: itemsInCart
+  });
+});
 ```
 
 ## Ask For Help
