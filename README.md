@@ -221,7 +221,12 @@ const onRegistrationFormSubmit = async (evt) => {
     /* ... */
     await pe.setPerson({ email: 'someone@email.com' }); // profile identifier from the registration form
     await pe.track('registration'); // your custom event
-    await pe.updatePerson({ firstName: 'First name', lastName: 'Last name', contactInformation: { phone: [{ number: "+385991234567" }] }, customAttributes: { industry: "some industry" } }); // person attributes from the form
+    await pe.updatePerson({
+      firstName: 'First name',
+      lastName: 'Last name',
+      contactInformation: { phone: [{ number: "+385991234567" }] },
+      customAttributes: { industry: "some industry" },
+    }); // person attributes from the form
 };
  
 const registrationForm = document.querySelector('form');
@@ -242,7 +247,12 @@ const onRegistrationFormSubmit = (evt) => {
 
   pe.setPerson({ email: formEmail })
     .then(() => pe.track('registration')) // your custom event
-    .then(() => pe.updatePerson({ firstName: formFirstName, lastName: formLastName, contactInformation: { phone: [{ number: formPhone }] }, customAttributes: { industry: formIndustry } }));
+    .then(() => pe.updatePerson({
+      firstName: formFirstName,
+      lastName: formLastName,
+      contactInformation: { phone: [{ number: formPhone }] },
+      customAttributes: { industry: formIndustry },
+    }));
 };
 
 const registrationForm = document.querySelector('form');
